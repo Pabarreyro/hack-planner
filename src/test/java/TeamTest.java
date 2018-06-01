@@ -12,9 +12,16 @@ public class TeamTest {
     }
 
     @Test
-    public void setMembers_addsMember() {
+    public void setMembers_addsMember_janeDoe() {
         Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
         testTeam.setMembers("Jane Doe");
         assertEquals("Jane Doe", testTeam.getMembers().get(1));
+    }
+
+    @Test
+    public void setName_updatesTeamName_teamTest() {
+        Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
+        testTeam.setName("Team Test");
+        assertEquals("Team Test", testTeam.getName());
     }
 }
