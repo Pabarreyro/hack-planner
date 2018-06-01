@@ -28,8 +28,18 @@ public class TeamTest {
 
     @Test
     public void getAll_returnsAllTeams_2() {
+        Team.clearAll();
         Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
         Team testTeam2 = new Team("TestTeam", "Jane Doe", "Test Description");
         assertEquals(2, Team.getAll().size());
+    }
+
+    @Test
+    public void findById_returnsTeamByIdCorrectly_3() {
+        Team.clearAll();
+        Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
+        Team testTeam2 = new Team("TestTeam", "Jane Doe", "Test Description");
+        Team testTeam3 = new Team("TestTeam", "Jose Doe", "Test Description");
+        assertEquals(3, Team.findById(testTeam3.getId()).getId());
     }
 }
