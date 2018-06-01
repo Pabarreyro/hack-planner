@@ -39,6 +39,10 @@ public class Team {
         this.name = teamName;
     }
 
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
     public static ArrayList<Team> getAll() {
         return teams;
     }
