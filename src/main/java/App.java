@@ -20,5 +20,15 @@ public class App {
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/teams/new", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            String inputName = req.queryParams("name");
+            String inputProduct = req.queryParams("product");
+            String inputMember = req.queryParams("member");
+            Team newTeam = new Team(inputName, inputMember, inputProduct);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
     }
 }
