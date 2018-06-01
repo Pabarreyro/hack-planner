@@ -1,0 +1,19 @@
+{{#partial "content"}}
+    <div class="container mt-2">
+        {{#if team}}
+            <h3>{{team.name}}</h3>
+            <p class="lead">{{team.product}}</p>
+            <h5>Members:</h5>
+            <ul>
+                {{#each team.members}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            <a href="/teams/{{id}}/update"><button class="btn btn-primary">Edit</button></a>
+        {{else}}
+            <h2>Sorry, no such team is registered. Try one of our <a href="/">registered teams</a>!</h2>
+        {{/if}}
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
