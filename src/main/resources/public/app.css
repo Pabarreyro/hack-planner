@@ -1,3 +1,26 @@
+/* layout.hbs */
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+#content {
+    padding:10px;
+    padding-bottom: 45px;   /* Height of the footer */
+}
+
+footer{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom:  0;
+    width: 100%;
+    height: 45px;   /* Height of the footer */
+    color: white;
+}
+
+/* index.hbs */
 #banner {
     display:flex;
     align-items:center;
