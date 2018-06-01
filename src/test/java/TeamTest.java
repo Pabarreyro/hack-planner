@@ -25,4 +25,11 @@ public class TeamTest {
         testTeam.setName("models.Team Test");
         assertEquals("models.Team Test", testTeam.getName());
     }
+
+    @Test
+    public void getAll_returnsAllTeams_2() {
+        Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
+        Team testTeam2 = new Team("TestTeam", "Jane Doe", "Test Description");
+        assertEquals(2, Team.getAll().size());
+    }
 }
