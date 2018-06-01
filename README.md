@@ -18,12 +18,12 @@ This application will provide would-be attendees of a hypothetical Hack-a-Thon e
 
 
 ##### RESTful Frontend
-| Endpoint | Method | Description |
+| Endpoint | Methods | Description |
 | --- | --- | --- |
 | /teams | GET | Show all teams  |
-| /teams/new  | POST | Create new team |
+| /teams/new  | GET/POST | Create new team |
 | /teams/:id  | GET | Show single team by ID |
-| /teams/:id/update  | POST | Update single team |
+| /teams/:id/update  | GET/POST | Update single team |
 
 
 
