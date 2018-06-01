@@ -22,8 +22,15 @@ public class TeamTest {
     @Test
     public void setName_updatesTeamName_teamTest() throws Exception{
         Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
-        testTeam.setName("models.Team Test");
-        assertEquals("models.Team Test", testTeam.getName());
+        testTeam.setName("Team Test");
+        assertEquals("Team Test", testTeam.getName());
+    }
+
+    @Test
+    public void setProduct_updatesTeamProduct_teamTest() throws Exception{
+        Team testTeam = new Team("TestTeam", "John Doe", "Test Description");
+        testTeam.setProduct("Better Test Description");
+        assertEquals("Better Test Description", testTeam.getProduct());
     }
 
     @Test
