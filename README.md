@@ -14,7 +14,7 @@ This application will provide would-be attendees of a hypothetical Hack-a-Thon e
 | --- | --- | --- |
 | Instantiate a team with name, members and description | "Aqua PDX"<br>"Carlos Dos Santos"<br>"Internet-of-things app to help farmers track real-time soil moisture info" | Team: Aqua PDX<br>Members:<ul><li>Carlos Dos Santos</li></ul>Product:Internet-of-things app to help farmers track real-time soil moisture info. |
 | Add members to team | "Linda Rosaros" | Team: Aqua PDX<br>Members:<ul><li>Carlos Dos Santos</li><li>Linda Rosaros</li></ul><br>Product:Internet-of-things app to help farmers track real-time soil moisture info. |
-| Update team details | "AquaPDX" | Team: AquaPDX<br>Members:<ul><li>Carlos Dos Santos</li><li>Linda Rosaros</li></ul><br>Product:Internet-of-things app to help farmers track real-time soil moisture info. |
+| Update team name | "AquaPDX" | Team: AquaPDX<br>Members:<ul><li>Carlos Dos Santos</li><li>Linda Rosaros</li></ul><br>Product:Internet-of-things app to help farmers track real-time soil moisture info. |
 
 
 ##### RESTful Frontend
@@ -27,22 +27,22 @@ This application will provide would-be attendees of a hypothetical Hack-a-Thon e
 
 
 
-## Setup/Installation Requirements
+### Setup/Installation Requirements
 
 * Clone [this repo](https://github.com/Pabarreyro/hack-planner)
 * Install Java [SDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) & [JRE](http://www.java.com/en/)
 * Run App.java in local IDE
 * Install [handlebars](http://handlebarsjs.com/)
 
-## Known Bugs
+### Known Bugs
 
 N/A
 
-## Support and contact details
+### Support and contact details
 
 For questions or to report a bug, start issue in this repo.
 
-## Technologies Used
+### Technologies Used
 
 * Java 1.8
 * [Spark](http://sparkjava.com/) 2.6.5
