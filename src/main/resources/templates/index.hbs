@@ -4,23 +4,25 @@
     </div>
     <div class="container mt-2">
         <h3 class="text-center">Currently Registered Teams:</h3>
-        {{#if jobs}}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{product}}</h6>
-                    <p class="card-text">
-                        <ul class="list-inline">
-                            {{#each members}}
-                                <li class="list-inline-item">{{this}}</li>
-                            {{/each}}
-                        </ul>
-                    </p>
-                    <a href="/teams/{{id}}"><button class="btn btn-primary">More</button></a>
-                    <a href="/teams/{{id}}/update"><button class="btn btn-primary">Edit</button></a>
+        {{#if teams}}
+            {{#each teams}}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{product}}</h6>
+                        <p class="card-text">
+                            <ul class="list-inline">
+                                {{#each members}}
+                                    <li class="list-inline-item">{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </p>
+                        <a href="/teams/{{id}}"><button class="btn btn-primary">More</button></a>
+                        <a href="/teams/{{id}}/update"><button class="btn btn-primary">Edit</button></a>
+                    </div>
                 </div>
-            </div>
-            <hr>
+                <hr>
+            {{/each}}
         {{else}}
             <div class="card">
                 <div class="card-body">
