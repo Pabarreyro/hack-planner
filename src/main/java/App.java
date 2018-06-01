@@ -21,7 +21,6 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/teams/new", (req, res) -> {
-            HashMap<String, Object> model = new HashMap<>();
             String inputName = req.queryParams("name");
             String inputProduct = req.queryParams("product");
             String inputMember = req.queryParams("member");
@@ -46,5 +45,30 @@ public class App {
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/teams/:id/update", (req, res) -> {
+            int searchId = Integer.parseInt(req.params("id"));
+            Team updatedTeam = Team.findById(searchId);
+            String redirectPath = "/teams/" + req.params("id");
+            if (!req.queryParams("name").equals("")){
+                String updatedName = req.queryParams("name");
+                updatedTeam.setName(updatedName);
+            }
+            if (!req.queryParams("product").equals("")){
+                String updatedProduct = req.queryParams("product");
+                updatedTeam.setProduct(updatedProduct);
+            }
+            if (!req.queryParams("member").equals("")) {
+                String updatedMember = req.queryParams("member");
+                updatedTeam.setMembers(updatedMember);
+            }
+            res.redirect(redirectPath);
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/about", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("registeredTeams", Team.getAll().size());
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
