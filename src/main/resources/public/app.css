@@ -1,0 +1,13 @@
+#banner {
+    display:flex;
+    align-items:center;
+    background-image: url("../images/banner.jpg");
+    background-position: center;
+    height: 40vh;
+    width: 90%;
+}
+
+#banner h1 {
+    color: white;
+    font-weight: heavy;
+}
