@@ -42,4 +42,16 @@ public class Team {
     public static ArrayList<Team> getAll() {
         return teams;
     }
+
+    public static void clearAll() {
+        teams.clear();
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public static Team findById(int id) {
+        return teams.get(id - 1);
+    }
 }
