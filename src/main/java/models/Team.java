@@ -6,6 +6,8 @@ public class Team {
     private String name;
     private ArrayList<String> members;
     private String product;
+    private static ArrayList<Team> teams = new ArrayList<>();
+    private int id;
 
     public Team(String name, String members, String product) {
         this.name = name;
@@ -13,6 +15,8 @@ public class Team {
             add(members);
         }};
         this.product = product;
+        teams.add(this);
+        this.id = teams.size();
     }
 
     public String getName() {
@@ -33,5 +37,9 @@ public class Team {
 
     public void setName(String teamName) {
         this.name = teamName;
+    }
+
+    public static ArrayList<Team> getAll() {
+        return teams;
     }
 }
