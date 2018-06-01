@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{#block "title"}}LatinX-Hack{{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="/">LatinX-Hack</a>
+    <span class="navbar-text">
+      <small>&#161;Avancemos juntos!</small>
+    </span>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/jobs">Register</a></li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <!--begin main template-->
+
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+
+<!--end main template-->
+{{#block "footer"}}
+    <footer class="footer mb-0">
+        <div class="container text-center">
+            <p class="nav-text"> &copy; LatinX-Hack 2018 </p>
+        </div>
+    </footer>
+    </body>
+    </html>
+{{/block}}
