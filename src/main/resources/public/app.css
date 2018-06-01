@@ -1,13 +1,34 @@
+/* |--|--|--| */
 /* layout.hbs */
-body {
-    margin:0;
-    padding:0;
-    height:100%;
+/* |--|--|--| */
+
+* {
+ box-sizing: border-box;
 }
 
-#content {
-    padding:10px;
-    padding-bottom: 45px;   /* Height of the footer */
+*:before,
+*:after {
+ box-sizing: border-box;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
+}
+
+#main-container {
+ min-height: 100vh; /* will cover the 100% of viewport */
+ overflow: hidden;
+ display: block;
+ position: relative;
+ padding-bottom: 45px; /* height of your footer */
+}
+
+footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
 }
 
 footer{
@@ -20,7 +41,10 @@ footer{
     color: white;
 }
 
-/* index.hbs */
+/* |--|--|--| */
+/*  index.hbs */
+/* |--|--|--| */
+
 #banner {
     display:flex;
     align-items:center;
