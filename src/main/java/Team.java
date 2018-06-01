@@ -24,4 +24,8 @@ public class Team {
     public String getProduct() {
         return product;
     }
+
+    public void setMembers(String memberName) {
+        this.members.add(memberName);
+    }
 }
