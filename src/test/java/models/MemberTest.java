@@ -13,10 +13,10 @@ public class MemberTest {
     }
 
     @Test
-    public void setTeam_assignsTeamObjectCorrectly_teamName() {
+    public void setTeamId_assignsTeamObjectCorrectly_teamName() {
         Member testMember = new Member("name");
         Team testTeam = new Team("Test Team", "test description");
-        testMember.setTeam(testTeam);
-        assertEquals("Test Team", testMember.getTeam().getName());
+        testMember.setTeamId(1);
+        assertEquals(1, testMember.getTeamId());
     }
 }
