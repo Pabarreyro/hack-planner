@@ -72,13 +72,12 @@ public class App {
         // post: submit team update form (redirect to /categories/:id)
         post("/categories/:id/update", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
-            String teamId = req.params("id");
-            int id = Integer.parseInt(teamId);
+            int id = Integer.parseInt(req.params("id"));
             String name = req.queryParams("name");
             String product = req.queryParams("product");
             int memberCount = memberDao.getAllByTeamId(id).size();
             teamDao.update(id, name, product, memberCount);
-            String redirectPath = "/categories/" + teamId;
+            String redirectPath = "/teams/" + id;
             res.redirect(redirectPath);
             return null;
         }, new HandlebarsTemplateEngine());
@@ -121,5 +120,22 @@ public class App {
             return new ModelAndView(model, "member-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        // post: submit member update form (redirect to /teams/:id)
+        post("/members/:id/update", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            String name = req.queryParams("name");
+            int id = Integer.parseInt(req.params("id"));
+            int teamId = Integer.parseInt(req.queryParams("teamId"));
+            memberDao.update(id, name, teamId);
+            teamDao.update(
+                    teamId,
+                    teamDao.findById(teamId).getName(),
+                    teamDao.findById(teamId).getProduct(),
+                    memberDao.getAllByTeamId(teamId).size()
+            );
+            String redirectPath = "/members/" + id;
+            res.redirect(redirectPath);
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }
