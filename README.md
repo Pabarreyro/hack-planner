@@ -20,11 +20,16 @@ This application will provide would-be attendees of a hypothetical Hack-a-Thon e
 ##### RESTful Frontend
 | Endpoint | Methods | Description |
 | --- | --- | --- |
-| /teams | GET | Show all teams  |
+| / | GET | Display all teams & members  |
 | /teams/new  | GET/POST | Create new team |
-| /teams/:id  | GET | Show single team by ID |
+| /teams/:id  | GET | Display single team by ID, including all members |
 | /teams/:id/update  | GET/POST | Update single team |
-
+| /teams/:id/delete  | POST | Delete single team & reassign members |
+| /teams/delete  | POST | Delete all teams & members |
+| /members/:id  | GET | Display single member, including team |
+| /members/:id/update  | GET/POST | Update single member |
+| /members/:id/delete  | POST | Delete single member |
+| /members/delete  | POST | Delete all members |
 
 
 ### Setup/Installation Requirements
