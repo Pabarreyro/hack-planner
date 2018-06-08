@@ -48,6 +48,16 @@ public class Sql2oMemberDaoTest {
         assertEquals(0, memberDao.getAll().size());
     }
 
+    @Test
+    public void getAllByTeam_returnsOnlyMembersBelongingToTeam_1() {
+        Member testMember = setUpMember();
+        Member testMember2 = new Member("Test Woman");
+        testMember2.setTeamId(1);
+        memberDao.add(testMember);
+        memberDao.add(testMember2);
+        assertEquals(1, memberDao.getAllByTeam(1).size());
+    }
+
     public Team setUpTeam() {
         return new Team("Test Team", "Test Product");
     }
