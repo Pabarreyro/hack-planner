@@ -32,6 +32,10 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-
+        // get: display new team form
+        get("/teams/new", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
