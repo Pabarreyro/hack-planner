@@ -22,5 +22,14 @@ public class Sql2oTeamDao implements TeamDao{
         }
     }
 
+    @Override
+    public List<Team> getAll() {
+        String sql = "SELECT * FROM teams";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .executeAndFetch(Team.class);
+        }
+    }
+
 
 }

@@ -23,4 +23,13 @@ public class Sql2oMemberDao implements MemberDao {
             System.out.println(ex);
         }
     }
+
+    @Override
+    public List<Member> getAll() {
+        String sql = "SELECT * FROM members";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .executeAndFetch(Member.class);
+        }
+    }
 }
