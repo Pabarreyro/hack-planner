@@ -37,5 +37,16 @@ public class App {
             HashMap<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
+
+        // post: submit category form (redirect to /)
+        post("/teams", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            String inputName = req.queryParams("name");
+            String inputProduct = req.queryParams("product");
+            Team newTeam = new Team(inputName, inputProduct);
+            teamDao.add(newTeam);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }
