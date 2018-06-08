@@ -83,12 +83,29 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        // get: display new Member form (display all Teams)
+        // get: display new member form (display all Teams)
         get("/members/new", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             List<Team> teams = teamDao.getAll();
             model.put("teams", teams);
             return new ModelAndView(model, "member-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        // post: submit new member form (redirect to /)
+        post("/members", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            String name = req.queryParams("name");
+            int teamId = Integer.parseInt(req.queryParams("teamId"));
+            Member newMember = new Member(name, teamId);
+            memberDao.add(newMember);
+            teamDao.update(
+                    teamId,
+                    teamDao.findById(teamId).getName(),
+                    teamDao.findById(teamId).getProduct(),
+                    memberDao.getAllByTeamId(teamId).size()
+            );
+            res.redirect("/");
+            return null;
         }, new HandlebarsTemplateEngine());
 
     }
