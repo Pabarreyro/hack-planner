@@ -83,5 +83,13 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        // get: display new Member form (display all Teams)
+        get("/members/new", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            model.put("teams", teams);
+            return new ModelAndView(model, "member-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
 }
