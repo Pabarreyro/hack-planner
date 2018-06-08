@@ -11,7 +11,7 @@ public interface MemberDao {
 
     // LIST
     List<Member> getAll();
-    List<Member> getAllMembersByTeam(int teamId);
+    List<Member> getAllByTeamId(int teamId);
 
     // READ
     Member findById(int id);
