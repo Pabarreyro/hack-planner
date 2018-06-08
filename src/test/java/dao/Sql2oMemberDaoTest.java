@@ -1,5 +1,7 @@
 package dao;
 
+import models.Member;
+import models.Team;
 import org.junit.*;
 import org.sql2o.*;
 
@@ -22,5 +24,21 @@ public class Sql2oMemberDaoTest {
     @After
     public void tearDown() throws Exception {
         conn.close();
+    }
+
+    @Test
+    public void add_insertsMemberAndAssignsId_newId() {
+        Member testMember = setUpMember();
+        int initialId = testMember.getId();
+        memberDao.add(testMember);
+        assertNotEquals(initialId, testMember.getId());
+    }
+
+    public Team setUpTeam() {
+        return new Team("TestTeam", "TestProduct");
+    }
+
+    public Member setUpMember() {
+        return new Member("TestMan");
     }
 }
