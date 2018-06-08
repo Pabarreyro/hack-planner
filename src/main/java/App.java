@@ -22,6 +22,16 @@ public class App {
         MemberDao memberDao = new Sql2oMemberDao(sql2o);
         Connection conn = sql2o.open();
 
+        // get: display all teams and members
+        get("/", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            List<Team> teams = teamDao.getAll();
+            List<Member> members = memberDao.getAll();
+            model.put("teams", teams);
+            model.put("members", members);
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
     }
 }
