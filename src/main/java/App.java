@@ -108,5 +108,18 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        // get: display member update form (display all teams)
+        get("/members/:id/update", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            boolean editMember = true;
+            int id = Integer.parseInt(req.params("id"));
+            Member member = memberDao.findById(id);
+            List<Team> teams = teamDao.getAll();
+            model.put("editMember", editMember);
+            model.put("member", member);
+            model.put("teams", teams);
+            return new ModelAndView(model, "member-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }
 }
