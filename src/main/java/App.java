@@ -137,5 +137,40 @@ public class App {
             res.redirect(redirectPath);
             return null;
         }, new HandlebarsTemplateEngine());
+
+        // post: delete team with its members (redirect to /)
+        post("/teams/:id/delete", (req, res) -> {
+            int teamId = Integer.parseInt(req.params("id"));
+            teamDao.deleteById(teamId);
+            List<Member> membersToDelete = memberDao.getAllByTeamId(teamId);
+            for (Member member : membersToDelete) {
+                memberDao.deleteById(member.getId());
+            }
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete all teams & members (redirect to /)
+        post("/teams/delete", (req, res) -> {
+            teamDao.clearAll();
+            memberDao.clearAll();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete member (redirect to /teams/:id)
+        post("/members/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            teamDao.deleteById(id);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete all members (redirect to /)
+        post("/members/delete", (req, res) -> {
+            memberDao.clearAll();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }
