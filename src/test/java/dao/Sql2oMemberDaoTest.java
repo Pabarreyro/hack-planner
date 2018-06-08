@@ -34,11 +34,25 @@ public class Sql2oMemberDaoTest {
         assertNotEquals(initialId, testMember.getId());
     }
 
+    @Test
+    public void getAll_returnsAllExistingMembers_2() {
+        Member testMember = setUpMember();
+        Member testMember2 = new Member("Test Woman");
+        memberDao.add(testMember);
+        memberDao.add(testMember2);
+        assertEquals(2, memberDao.getAll().size());
+    }
+
+    @Test
+    public void getAll_returnsEmptyListWhenNoMembersExist_0() {
+        assertEquals(0, memberDao.getAll().size());
+    }
+
     public Team setUpTeam() {
-        return new Team("TestTeam", "TestProduct");
+        return new Team("Test Team", "Test Product");
     }
 
     public Member setUpMember() {
-        return new Member("TestMan");
+        return new Member("Test Man");
     }
 }

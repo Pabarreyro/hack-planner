@@ -35,11 +35,25 @@ public class Sql2oTeamDaoTest {
         assertNotEquals(initialId, testTeam.getId());
     }
 
+    @Test
+    public void getAll_returnsAllExistingTeams_2() {
+        Team testTeam = setUpTeam();
+        Team testTeam2 = new Team("Test Team West", "New Test Product");
+        teamDao.add(testTeam);
+        teamDao.add(testTeam);
+        assertEquals(2, teamDao.getAll().size());
+    }
+
+    @Test
+    public void getAll_returnsEmptyListWhenNoTeamsExist_0() {
+        assertEquals(0, teamDao.getAll().size());
+    }
+
     public Team setUpTeam() {
-        return new Team("TestTeam", "TestProduct");
+        return new Team("Test Team", "Test Product");
     }
 
     public Member setUpMember() {
-        return new Member("TestMan");
+        return new Member("Test Man");
     }
 }
