@@ -69,8 +69,8 @@ public class App {
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // post: submit team update form (redirect to /categories/:id)
-        post("/categories/:id/update", (req, res) -> {
+        // post: submit team update form (redirect to /teams/:id)
+        post("/teams/:id/update", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params("id"));
             String name = req.queryParams("name");
