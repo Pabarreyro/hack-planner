@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Member {
     private String name;
-    private Team team;
+    private int teamId;
     private int id;
 
     public Member(String name) {
         this.name = name;
+        this.teamId = 0;
     }
 
     public String getName() {
@@ -17,9 +18,9 @@ public class Member {
 
     public void setName(String name) {  this.name = name; }
 
-    public Team getTeam() { return team; }
+    public int getTeamId() { return teamId; }
 
-    public void setTeam(Team team) { this.team = team; }
+    public void setTeamId(int teamId) { this.teamId = teamId; }
 
     public int getId() { return id; }
 
@@ -30,13 +31,13 @@ public class Member {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Member member = (Member) o;
-        return id == member.id &&
-                Objects.equals(name, member.name) &&
-                Objects.equals(team, member.team);
+        return teamId == member.teamId &&
+                id == member.id &&
+                Objects.equals(name, member.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, team, id);
+        return Objects.hash(name, teamId, id);
     }
 }
