@@ -68,11 +68,29 @@ public class Sql2oTeamDaoTest {
         assertNotEquals(originalName, updatedTeam.getName());
     }
 
-    public Team setUpTeam() {
-        return new Team("Test Team", "Test Product");
+    @Test
+    public void deleteById_removesCorrectTeam() {
+        Team testTeam = setUpTeam();
+        Team testTeam2 = new Team("Test Team West", "New Test Product");
+        teamDao.add(testTeam);
+        teamDao.add(testTeam2);
+        int assignedId = testTeam.getId();
+        teamDao.deleteById(assignedId);
+        assertTrue(teamDao.getAll().contains(testTeam2));
+        assertFalse(teamDao.getAll().contains(testTeam));
     }
 
-    public Member setUpMember() {
-        return new Member("Test Man");
+    @Test
+    public void clearAll_removesAllTeams() {
+        Team testTeam = setUpTeam();
+        Team testTeam2 = new Team("Test Team West", "New Test Product");
+        teamDao.add(testTeam);
+        teamDao.add(testTeam2);
+        teamDao.clearAll();
+        assertEquals(0, teamDao.getAll().size());
+    }
+
+    public Team setUpTeam() {
+        return new Team("Test Team", "Test Product");
     }
 }
