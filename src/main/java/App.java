@@ -64,9 +64,24 @@ public class App {
             boolean editTeam = true;
             int teamId = Integer.parseInt(req.params("id"));
             Team team = teamDao.findById(teamId);
-            model.put("editTeam", editTeam );
+            model.put("editTeam", editTeam);
             model.put("team", team);
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
+
+        // post: submit team update form (redirect to /categories/:id)
+        post("/categories/:id/update", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            String teamId = req.params("id");
+            int id = Integer.parseInt(teamId);
+            String name = req.queryParams("name");
+            String product = req.queryParams("product");
+            int memberCount = memberDao.getAllByTeamId(id).size();
+            teamDao.update(id, name, product, memberCount);
+            String redirectPath = "/categories/" + teamId;
+            res.redirect(redirectPath);
+            return null;
+        }, new HandlebarsTemplateEngine());
+
     }
 }
