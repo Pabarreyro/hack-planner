@@ -40,13 +40,21 @@ public class Sql2oTeamDaoTest {
         Team testTeam = setUpTeam();
         Team testTeam2 = new Team("Test Team West", "New Test Product");
         teamDao.add(testTeam);
-        teamDao.add(testTeam);
+        teamDao.add(testTeam2);
         assertEquals(2, teamDao.getAll().size());
     }
 
     @Test
     public void getAll_returnsEmptyListWhenNoTeamsExist_0() {
         assertEquals(0, teamDao.getAll().size());
+    }
+
+    @Test
+    public void findById_returnsCorrectTeam() {
+        Team testTeam = setUpTeam();
+        teamDao.add(testTeam);
+        int assignedId = testTeam.getId();
+        assertEquals(testTeam, teamDao.findById(assignedId));
     }
 
     public Team setUpTeam() {

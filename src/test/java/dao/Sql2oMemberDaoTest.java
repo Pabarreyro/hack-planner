@@ -49,13 +49,28 @@ public class Sql2oMemberDaoTest {
     }
 
     @Test
-    public void getAllByTeam_returnsOnlyMembersBelongingToTeam_1() {
+    public void getAllByTeamId_returnsOnlyMembersBelongingToTeam_1() {
         Member testMember = setUpMember();
         Member testMember2 = new Member("Test Woman");
         testMember2.setTeamId(1);
         memberDao.add(testMember);
         memberDao.add(testMember2);
-        assertEquals(1, memberDao.getAllByTeam(1).size());
+        assertEquals(1, memberDao.getAllByTeamId(1).size());
+    }
+
+    @Test
+    public void getAllByTeamId_returnsEmptyListIfTeamHasNoMembers_1() {
+        Member testMember = setUpMember();
+        memberDao.add(testMember);
+        assertEquals(0, memberDao.getAllByTeamId(1).size());
+    }
+
+    @Test
+    public void findById_returnsCorrectMember() {
+        Member testMember = setUpMember();
+        memberDao.add(testMember);
+        int assignedId = testMember.getId();
+        assertEquals(testMember, memberDao.findById(assignedId));
     }
 
     public Team setUpTeam() {
