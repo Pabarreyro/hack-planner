@@ -42,4 +42,14 @@ public class Sql2oMemberDao implements MemberDao {
                     .executeAndFetch(Member.class);
         }
     }
+
+    @Override
+    public Member findById(int id) {
+        String sql = "SELECT * FROM members WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Member.class);
+        }
+    }
 }
