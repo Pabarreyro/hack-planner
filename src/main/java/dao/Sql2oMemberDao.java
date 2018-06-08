@@ -1,4 +1,5 @@
 package dao;
 
-public class Sql2oMemberDao {
+public class Sql2oMemberDao implements MemberDao {
+
 }

@@ -1,4 +1,5 @@
 package dao;
 
-public class Sql2oCategoryDao {
+public class Sql2oTeamDao implements TeamDao{
+
 }
