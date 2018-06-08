@@ -73,6 +73,17 @@ public class Sql2oMemberDaoTest {
         assertEquals(testMember, memberDao.findById(assignedId));
     }
 
+    @Test
+    public void update_correctlyUpdatesFields() {
+        Member testMember = setUpMember();
+        int originalTeamId = testMember.getTeamId();
+        memberDao.add(testMember);
+        int assignedId = testMember.getId();
+        memberDao.update(assignedId, testMember.getName(), 1);
+        Member updatedMember = memberDao.findById(assignedId);
+        assertNotEquals(originalTeamId, updatedMember.getTeamId());
+    }
+
     public Team setUpTeam() {
         return new Team("Test Team", "Test Product");
     }
