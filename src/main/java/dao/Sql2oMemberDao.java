@@ -52,4 +52,18 @@ public class Sql2oMemberDao implements MemberDao {
                     .executeAndFetchFirst(Member.class);
         }
     }
+
+    @Override
+    public void update(int id, String name, int teamId) {
+        String sql = "UPDATE members SET (id, name, teamId) = (:id, :name, :teamId)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .addParameter("teamId", teamId)
+                    .executeUpdate();
+        }  catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
 }
