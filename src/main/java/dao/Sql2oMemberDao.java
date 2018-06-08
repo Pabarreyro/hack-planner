@@ -38,8 +38,8 @@ public class Sql2oMemberDao implements MemberDao {
         String sql = "SELECT * FROM members WHERE teamId = :teamId";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
-                    .addParameter(teamId)
-                    .executeAndFetchFirst(Member.class);
+                    .addParameter("teamId", teamId)
+                    .executeAndFetch(Member.class);
         }
     }
 }
