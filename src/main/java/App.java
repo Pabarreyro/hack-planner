@@ -57,5 +57,16 @@ public class App {
             model.put("members", memberDao.getAllByTeamId(teamId));
             return new ModelAndView(model, "team-details.hbs");
         }, new HandlebarsTemplateEngine());
+
+        // get: display update form for single team
+        get("/teams/:id/update", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            boolean editTeam = true;
+            int teamId = Integer.parseInt(req.params("id"));
+            Team team = teamDao.findById(teamId);
+            model.put("editTeam", editTeam );
+            model.put("team", team);
+            return new ModelAndView(model, "team-form.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
