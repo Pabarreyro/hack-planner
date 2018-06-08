@@ -37,7 +37,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void getAll_returnsAllExistingMembers_2() {
         Member testMember = setUpMember();
-        Member testMember2 = new Member("Test Woman");
+        Member testMember2 = new Member("Test Woman", 0);
         memberDao.add(testMember);
         memberDao.add(testMember2);
         assertEquals(2, memberDao.getAll().size());
@@ -51,7 +51,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void getAllByTeamId_returnsOnlyMembersBelongingToTeam_1() {
         Member testMember = setUpMember();
-        Member testMember2 = new Member("Test Woman");
+        Member testMember2 = new Member("Test Woman", 0);
         testMember2.setTeamId(1);
         memberDao.add(testMember);
         memberDao.add(testMember2);
@@ -87,7 +87,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void deleteById_removesCorrectMember() {
         Member testMember = setUpMember();
-        Member testMember2 = new Member("Test Woman");
+        Member testMember2 = new Member("Test Woman", 0);
         memberDao.add(testMember);
         memberDao.add(testMember2);
         int assignedId = testMember.getId();
@@ -99,7 +99,7 @@ public class Sql2oMemberDaoTest {
     @Test
     public void clearAll_removesAllMembers() {
         Member testMember = setUpMember();
-        Member testMember2 = new Member("Test Woman");
+        Member testMember2 = new Member("Test Woman", 0);
         memberDao.add(testMember);
         memberDao.add(testMember2);
         memberDao.clearAll();
@@ -107,6 +107,6 @@ public class Sql2oMemberDaoTest {
     }
 
     public Member setUpMember() {
-        return new Member("Test Man");
+        return new Member("Test Man", 0);
     }
 }
