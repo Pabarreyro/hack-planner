@@ -38,7 +38,7 @@ public class App {
             return new ModelAndView(model, "team-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        // post: submit category form (redirect to /)
+        // post: submit team form (redirect to /)
         post("/teams", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             String inputName = req.queryParams("name");
@@ -47,6 +47,15 @@ public class App {
             teamDao.add(newTeam);
             res.redirect("/");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        // get: display single team with all related members
+        get("/teams/:id", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            int teamId = Integer.parseInt(req.params("id"));
+            model.put("team", teamDao.findById(teamId));
+            model.put("members", memberDao.getAllByTeamId(teamId));
+            return new ModelAndView(model, "team-details.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
