@@ -68,5 +68,14 @@ public class Sql2oTeamDao implements TeamDao{
         }
     }
 
-
+    @Override
+    public void clearAll() {
+        String sql = "DELETE from teams";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
 }
