@@ -7,9 +7,9 @@ public class Member {
     private int teamId;
     private int id;
 
-    public Member(String name) {
+    public Member(String name, int teamId) {
         this.name = name;
-        this.teamId = 0;
+        this.teamId = teamId;
     }
 
     public String getName() {
