@@ -30,9 +30,19 @@
 
         <!--end main template-->
         {{#block "footer"}}
-            <footer class="footer bg-primary mt-2">
-                <div class="container text-center">
-                    <p class="nav-text"> &copy; LatinX-Hack 2018 </p>
+            <footer class="bg-primary mt-2">
+                <div class="container">
+                    <ul class="list-inline my-auto">
+                        <li class="list-inline-item">
+                            <p class="nav-text"> &copy; LatinX-Hack 2018 </p>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/teams/delete" class="nav-link text-light">Purge Teams</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/members/delete" class="nav-link text-light">Purge Attendees</a>
+                        </li>
+                    </ul>
                 </div>
             </footer>
         </div>

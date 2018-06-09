@@ -4,12 +4,21 @@
             <h3>{{team.name}}</h3>
             <p class="lead">{{team.product}}</p>
             <h5>Members:</h5>
-            <ul>
-                {{#each team.members}}
-                    <li>{{this}}</li>
+            <ul class="list-group">
+                {{#each members}}
+                    <li class="list-group-item">
+                        {{name}}
+                        <span class="float-right">
+                            <a href="/members/{{id}}/delete" class="btn btn-warning">Delete</a>
+                        </span>
+                    </li>
                 {{/each}}
             </ul>
-            <a href="/teams/{{team.id}}/update"><button class="btn btn-primary">Edit</button></a>
+            <div class="mt-1">
+                <a href="/members/new" class="btn btn-success">Add a member</a>
+                <a href="/teams/{{team.id}}/update" class="btn btn-primary">Edit Details</a>
+                <a href="/teams/{{team.id}}/delete" class="btn btn-danger">Delete Team</a>
+            </div>
         {{else}}
             <h2>Sorry, no such team is registered. Try one of our <a href="/">registered teams</a>!</h2>
         {{/if}}

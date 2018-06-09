@@ -1,14 +1,14 @@
 {{#partial "content"}}
     {{#if editTeam}}
         <h3>Update Your Team</h3>
-        <form action="/teams/{{editTeam.id}}/update" method="post">
+        <form action="/teams/{{team.id}}/update" method="post">
             <div class="form-group">
                 <label for="name">Team Name</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="{{editTeam.name}}">
+                <input type="text" id="name" name="name" class="form-control" placeholder="{{team.name}}">
             </div>
             <div class="form-group">
                 <label for="product">Product</label>
-                <input type="text" id="product" name="product" class="form-control" placeholder="{{editTeam.product}}">
+                <input type="text" id="product" name="product" class="form-control" placeholder="{{team.product}}">
             </div>
             <div class="form-group">
                 <label for="member">Add Member</label>
@@ -19,7 +19,7 @@
         </form>
     {{else}}
         <h3>Register your team!</h3>
-        <form action="/teams/new" method="post">
+        <form action="/teams" method="post">
             <div class="form-group">
                 <label for="name">Team Name</label>
                 <input type="text" id="name" name="name" class="form-control">
@@ -27,10 +27,6 @@
             <div class="form-group">
                 <label for="product">Product</label>
                 <input type="text" id="product" name="product" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="member">Registering Member</label>
-                <input type="text" id="member" name="member" class="form-control">
             </div>
             <a href="/"><button type="button" class="btn btn-danger">Cancel</button></a>
             <button type="submit" class="btn btn-primary">Register</button>

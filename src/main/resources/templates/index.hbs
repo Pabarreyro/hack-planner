@@ -7,11 +7,11 @@
         <section class="jumbotron text-center my-2">
             <div class="container">
                 <h2>Register here!</h2>
-                {{#if categories}}
-                    <a href="/teams/new" class="btn btn-dark">Team</a>
-                    <a href="/members/new" class="btn btn-warning">Team Member</a>
+                {{#if teams}}
+                    <a href="/teams/new" class="btn btn-dark">Add Team</a>
+                    <a href="/members/new" class="btn btn-warning">Add Member</a>
                 {{else}}
-                    <a href="/teams/new" class="btn btn-dark">Add Category</a>
+                    <a href="/teams/new" class="btn btn-dark">Add Team</a>
                 {{/if}}
             </div>
         </section>
@@ -43,7 +43,7 @@
             <ul class="list-group">
                 {{#each members }}
                     <li class="list-group-item">
-                        <a href="/members/{{id}}">{{ name }}</a>
+                        <a href="/members/{{id}}/update">{{ name }}</a>
                         {{#if teamId }}
                             <span class="badge badge-pill badge-danger">Signed</span>
                         {{else}}
