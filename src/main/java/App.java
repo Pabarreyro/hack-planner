@@ -172,5 +172,12 @@ public class App {
             res.redirect(redirectPath);
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/about", (req, res) -> {
+            HashMap<String, Object> model = new HashMap<>();
+            model.put("registeredTeams", teamDao.getAll().size());
+            model.put("registeredMembers", memberDao.getAll().size());
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
