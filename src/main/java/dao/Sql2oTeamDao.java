@@ -4,7 +4,6 @@ import models.Team;
 import org.sql2o.*;
 
 import java.util.List;
-import java.util.Locale;
 
 public class Sql2oTeamDao implements TeamDao{
     private final Sql2o sql2o;
