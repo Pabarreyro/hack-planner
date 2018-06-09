@@ -49,6 +49,41 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        // post: delete all teams & members (redirect to /)
+        get("/teams/delete", (req, res) -> {
+            teamDao.clearAll();
+            memberDao.clearAll();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete all members (redirect to /)
+        get("/members/delete", (req, res) -> {
+            memberDao.clearAll();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete team with its members (redirect to /)
+        get("/teams/:id/delete", (req, res) -> {
+            int teamId = Integer.parseInt(req.params("id"));
+            teamDao.deleteById(teamId);
+            List<Member> membersToDelete = memberDao.getAllByTeamId(teamId);
+            for (Member member : membersToDelete) {
+                memberDao.deleteById(member.getId());
+            }
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        // post: delete member (redirect to /teams/:id)
+        get("/members/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            memberDao.deleteById(id);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         // get: display single team with all related members
         get("/teams/:id", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
@@ -124,7 +159,7 @@ public class App {
         post("/members/:id/update", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
-            int id = Integer.parseInt(req.params("id"));
+            int id = Integer.parseInt(req.queryParams("id"));
             int teamId = Integer.parseInt(req.queryParams("teamId"));
             memberDao.update(id, name, teamId);
             teamDao.update(
@@ -133,43 +168,8 @@ public class App {
                     teamDao.findById(teamId).getProduct(),
                     memberDao.getAllByTeamId(teamId).size()
             );
-            String redirectPath = "/members/" + id;
+            String redirectPath = "/teams/" + teamId;
             res.redirect(redirectPath);
-            return null;
-        }, new HandlebarsTemplateEngine());
-
-        // post: delete team with its members (redirect to /)
-        post("/teams/:id/delete", (req, res) -> {
-            int teamId = Integer.parseInt(req.params("id"));
-            teamDao.deleteById(teamId);
-            List<Member> membersToDelete = memberDao.getAllByTeamId(teamId);
-            for (Member member : membersToDelete) {
-                memberDao.deleteById(member.getId());
-            }
-            res.redirect("/");
-            return null;
-        }, new HandlebarsTemplateEngine());
-
-        // post: delete all teams & members (redirect to /)
-        post("/teams/delete", (req, res) -> {
-            teamDao.clearAll();
-            memberDao.clearAll();
-            res.redirect("/");
-            return null;
-        }, new HandlebarsTemplateEngine());
-
-        // post: delete member (redirect to /teams/:id)
-        post("/members/:id/delete", (req, res) -> {
-            int id = Integer.parseInt(req.params("id"));
-            teamDao.deleteById(id);
-            res.redirect("/");
-            return null;
-        }, new HandlebarsTemplateEngine());
-
-        // post: delete all members (redirect to /)
-        post("/members/delete", (req, res) -> {
-            memberDao.clearAll();
-            res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
     }
