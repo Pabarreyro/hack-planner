@@ -15,7 +15,6 @@ public class MemberTest {
     @Test
     public void setTeamId_assignsTeamObjectCorrectly_teamName() {
         Member testMember = new Member("name", 0);
-        Team testTeam = new Team("Test Team", "test description");
         testMember.setTeamId(1);
         assertEquals(1, testMember.getTeamId());
     }
