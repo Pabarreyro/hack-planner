@@ -159,7 +159,7 @@ public class App {
         post("/members/:id/update", (req, res) -> {
             HashMap<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
-            int id = Integer.parseInt(req.queryParams("id"));
+            int id = Integer.parseInt(req.params("id"));
             int teamId = Integer.parseInt(req.queryParams("teamId"));
             memberDao.update(id, name, teamId);
             teamDao.update(
